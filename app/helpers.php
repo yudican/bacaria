@@ -13,3 +13,14 @@ if (!function_exists('permissionLists')) {
     return $permissions;
   }
 }
+
+if (!function_exists('getImage')) {
+  function getImage($image)
+  {
+    if ($image) {
+      return asset('storage/' . $image);
+    } else {
+      return asset('assets/img/loader.svg');
+    }
+  }
+}
