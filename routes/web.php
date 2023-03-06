@@ -10,6 +10,10 @@ use App\Http\Livewire\UserManagement\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Master\CategoryController;
 use App\Http\Livewire\Master\BannerCategoryController;
+use App\Http\Livewire\Master\JenisIklanController;
+use App\Http\Livewire\Post\DataIklanController;
+use App\Http\Livewire\Master\LayoutController;
+use App\Http\Livewire\Pages\DataHalamanController;
 // [route_import_path]
 
 /*
@@ -45,6 +49,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'user.authorization']
 
     Route::get('/category', CategoryController::class)->name('category');
     Route::get('/banner-category', BannerCategoryController::class)->name('banner-category');
+    Route::get('/jenis-iklan', JenisIklanController::class)->name('jenis-iklan');
+    Route::get('/data-iklan', DataIklanController::class)->name('data-iklan');
+    Route::get('/layout', LayoutController::class)->name('layout');
+    Route::get('/data-halaman', DataHalamanController::class)->name('data-halaman');
     // [route_path]
 
 });
