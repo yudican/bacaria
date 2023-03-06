@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h4 class="card-title text-capitalize">
                         <a href="{{route('dashboard')}}">
-                            <span><i class="fas fa-arrow-left mr-3"></i>tbl data iklans</span>
+                            <span><i class="fas fa-arrow-left mr-3"></i>data iklans</span>
                         </a>
                         <div class="pull-right">
                             @if ($form_active)

@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h4 class="card-title text-capitalize">
                         <a href="{{route('dashboard')}}">
-                            <span><i class="fas fa-arrow-left mr-3 text-capitalize"></i>tbl jenis iklans</span>
+                            <span><i class="fas fa-arrow-left mr-3 text-capitalize"></i>jenis iklans</span>
                         </a>
                         <div class="pull-right">
                             @if (!$form && !$modal)
@@ -30,7 +30,7 @@
             <div class="modal-dialog" permission="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-capitalize" id="my-modal-title">{{$update_mode ? 'Update' : 'Tambah'}} tbl jenis iklans</h5>
+                        <h5 class="modal-title text-capitalize" id="my-modal-title">{{$update_mode ? 'Update' : 'Tambah'}} jenis iklans</h5>
                     </div>
                     <div class="modal-body">
                         <x-text-field type="text" name="nama_jenis_iklan" label="Nama Jenis Iklan" />
