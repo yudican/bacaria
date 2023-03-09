@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Master;
 
 use App\Models\Category;
+use App\Models\Layout;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -15,6 +16,7 @@ class CategoryController extends Component
     public $categorie_id;
     public $name;
     public $slug;
+    public $layout_id;
     public $image;
     public $image_path;
 
@@ -36,7 +38,9 @@ class CategoryController extends Component
     public function render()
     {
         $this->slug = Str::slug($this->name);
-        return view('livewire.master.categorie')->layout(config('crud-generator.layout'));
+        return view('livewire.master.categorie', [
+            'layouts' => Layout::orderBy('name', 'ASC')->get(),
+        ])->layout(config('crud-generator.layout'));
     }
 
     public function store()
@@ -45,6 +49,7 @@ class CategoryController extends Component
         $uid = hash('crc32', Carbon::now()->format('U'));
         $data = [
             'name'  => $this->name,
+            'layout_id'  => $this->layout_id,
             'slug'  => $this->slug . '-' . $uid,
         ];
 
@@ -66,6 +71,7 @@ class CategoryController extends Component
         $data = [
             'name'  => $this->name,
             'slug'  => $this->slug,
+            'layout_id'  => $this->layout_id,
         ];
         $row = Category::find($this->categorie_id);
 
@@ -96,7 +102,8 @@ class CategoryController extends Component
     {
         $rule = [
             'name'  => 'required',
-            'slug'  => 'required'
+            'slug'  => 'required',
+            'layout_id'  => 'required',
         ];
 
         return $this->validate($rule);
@@ -109,6 +116,7 @@ class CategoryController extends Component
         $this->categorie_id = $row->id;
         $this->name = $row->name;
         $this->slug = $row->slug;
+        $this->layout_id = $row->layout_id;
         $this->image = $row->image;
         if ($this->form) {
             $this->form_active = true;
@@ -146,6 +154,7 @@ class CategoryController extends Component
         $this->categorie_id = null;
         $this->name = null;
         $this->slug = null;
+        $this->layout_id = null;
         $this->image_path = null;
         $this->form = false;
         $this->form_active = false;

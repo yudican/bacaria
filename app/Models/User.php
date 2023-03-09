@@ -101,4 +101,21 @@ class User extends Authenticatable
             return $query->where('role_id', $role_id);
         })->where('parent_id')->orderBy('menu_order', 'ASC')->get();
     }
+
+    public function hasRole($roles)
+    {
+        $role = $this->role;
+
+        if (is_array($roles)) {
+            if (in_array($role->role_type, $roles)) {
+                return true;
+            }
+        }
+
+        if ($role->role_type == $roles) {
+            return true;
+        }
+
+        return false;
+    }
 }

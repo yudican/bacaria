@@ -24,6 +24,7 @@ class CategoryTable extends LivewireDatatable
         return [
             Column::name('id')->label('No.'),
             Column::name('name')->label('Name')->searchable(),
+            Column::name('layout.name')->label('Layout')->searchable(),
             Column::name('slug')->label('Slug')->searchable(),
             // Column::callback(['image'], function ($image) {
             //     return view('livewire.components.photo', [

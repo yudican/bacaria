@@ -34,6 +34,12 @@
                     </div>
                     <div class="modal-body">
                         <x-text-field type="text" name="name" label="Name" />
+                        <x-select name="layout_id" label="Layout">
+                            <option value="">Select Layout</option>
+                            @foreach ($layouts as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </x-select>
                         {{--
                         <x-text-field type="text" name="slug" label="Slug" /> --}}
                         {{--

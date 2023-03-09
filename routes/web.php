@@ -14,6 +14,7 @@ use App\Http\Livewire\Master\JenisIklanController;
 use App\Http\Livewire\Post\DataIklanController;
 use App\Http\Livewire\Master\LayoutController;
 use App\Http\Livewire\Pages\DataHalamanController;
+use App\Http\Livewire\Post\PostController;
 // [route_import_path]
 
 /*
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'user.authorization']
     Route::get('/data-iklan', DataIklanController::class)->name('data-iklan');
     Route::get('/layout', LayoutController::class)->name('layout');
     Route::get('/data-halaman', DataHalamanController::class)->name('data-halaman');
+    Route::get('/post', PostController::class)->name('post');
     // [route_path]
 
 });
