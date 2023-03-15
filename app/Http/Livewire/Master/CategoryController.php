@@ -48,6 +48,7 @@ class CategoryController extends Component
         $this->_validate();
         $uid = hash('crc32', Carbon::now()->format('U'));
         $data = [
+            'uid_category' => $uid,
             'name'  => $this->name,
             'layout_id'  => $this->layout_id,
             'slug'  => $this->slug . '-' . $uid,

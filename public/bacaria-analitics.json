@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bacaria-analitics",
+  "private_key_id": "3702af82b8a73b41c354d80aab4d50b166a396c4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCiPhA9gDU346An\nPkEXZrzOP3QKvSjnc5a5mPmcBE3xhlPedA3y7YWL/YawTfUR21Et7I2XtQa8izpt\nJ4b5fW1Ot62CeeH7bGc/+tCEEGDnRiaDEwBRJcXKJsAc+QAMqb1PRkvk3ZDDr6Sg\nHUvsh8RNwU3ebmncSPscli/tomuOF8cp6fynveS0FGsy/PBmcnOaEWLLzxhFMU//\niewfFVsKTPtcp5ixOgBiKZpEyQf7KLW9AiHQHTS+DpeLD5ZMkdn0wdzPOdpdgtth\nv6Y0Yp/UKjJXfyc0f/5xN41OPeO0EAmgThcvqwl5ANBkW3/FL4vlciatLe+nEfpQ\nrHqaYPKvAgMBAAECggEARjC1k/XgkEJhKjkrrfUbn9sh1/eIN8HxJnCBJLdUBTbJ\nGAd7dWq/CRZw69t+N/B7SXP6ufRuaqmNaGXeZheWb6TVYwpZ8w0uCib3iPsRAV1/\nEdvpmjHORSvIl4A+Pjw9E4vlD6mvlIlrnn2uODFwgvcrOhzonY3RXce4CoXnJDyC\nUlYznvZZ3PU1Y13LgKzPb+k6uDW5lHEuYk3CuAfOOSOljrQwU9n0HvFxH2Dpv1Ll\nCFBH1RN6lZX7ZTsmUNCuFpmiLxNoG8oIWY4HOFQpQ+1dPmA+x21iWJtT0FlTarTw\nJKw450PmHH0Q50/Vm0mUbJ1gUjLMikLs9kW13c2FyQKBgQDdakTxoLs+oRkYjuYr\nviIMYeTpPJwh0Kn95fIYwNks+CCaqGN2WzoUWv40IaJZuSm8nX4+KLT7OVT7a35T\n0nvWNr3YEfi2WeOORmjyjfmwiXNt9jNof/X644T3NcFr2SUcoBe+TGcLaRnvnPfO\nz3CXEt/t3rr9Bvv/0pja8UQ15QKBgQC7laeuECOR9GZXO0dBWBadzWrjBgIN640n\nr65oNFg9aWwI/jdW9zzOEhSePswzHidrgo1ART2g+PNZxF6MN5+U7S1D2tQF8hrM\niYQ4F/brexX1Zqea2ErnLOQt0DUkF7KogpjgM42xZvVI6o9R+4XXYIufTHvvGnz4\nd9vOEv39AwKBgFoE+7TVaWtkKgTfDFuaeNNZ9aySFNR2trZgh9ZiiamL1A2tCosz\nOeDOwe1GA3DBJGPoEEyLVlGRlKiHopvHxstoBDVV0S2qTCcrHz4GVQ7eQ0zgvTPu\nWn6/g+7SLyp+5WTG/gBDpd1wxLeztNijZB438U0Psixva4MuBzF0yAu1AoGAe0xK\nFCJtjvErF6lSE8RX0U+FM0XuscGjXXOfWsUVPwB9T4fxTgtifzzpKn6yb+MhHAyK\n1bTtZlJceiOV1ep1zUj8WL6MYIAbV1gIfWpbFbso2s2n2yLSURNzxB034Mpm11ZI\nMA4S04mOLmhm3gdKmR/PhlyalbY+cH8wDkrzgYsCgYA9efLp2Ru0JwaS1HV1yMyM\nq92LfbFjq762t3HJFLJfhbeCezuX6FxhCXcf4X27ySISWjjvmmrqeEKicSvD3ezf\nIm4LGIQu9yyl9smoTdycf3M77gNBr6jtmIJf+VEXSH8lgCIFurYGipNglMG2Ks+X\nMtap9VeeEJn2sjEK7e4JzA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "bacaria@bacaria-analitics.iam.gserviceaccount.com",
+  "client_id": "101617329540552553249",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bacaria%40bacaria-analitics.iam.gserviceaccount.com"
+}

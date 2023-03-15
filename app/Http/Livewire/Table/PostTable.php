@@ -18,10 +18,11 @@ class PostTable extends LivewireDatatable
     public function builder()
     {
         $user = auth()->user();
-        if ($user->hasRole(['admin', 'superadmin'])) {
+        if ($user->hasRole(['reporter'])) {
+            return Post::where('author_id', $user->id);
+        } else if ($user->hasRole(['editor'])) {
             return Post::query();
         } else {
-            return Post::where('author_id', $user->id);
         }
         return Post::query();
     }
@@ -42,35 +43,45 @@ class PostTable extends LivewireDatatable
                 $actions = [
                     [
                         'type' => 'button',
-                        'route' => 'getDataById(' . $id . ')',
-                        'label' => 'Edit',
-                    ],
-                    [
-                        'type' => 'button',
                         'route' => 'showDetail(' . $id . ')',
                         'label' => 'Detail',
-                    ],
-
+                    ]
                 ];
 
-                if ($user->hasRole(['admin', 'superadmin']) && $publish_status == 'waiting') {
+                if ($user->hasRole(['reporter'])  && $publish_status == 'waiting') {
                     $actions[] = [
                         'type' => 'button',
-                        'route' => 'approve(' . $id . ')',
-                        'label' => 'Approve',
-                    ];
-                    $actions[] = [
-                        'type' => 'button',
-                        'route' => 'showModalReject(' . $id . ')',
-                        'label' => 'Reject',
+                        'route' => 'getDataById(' . $id . ')',
+                        'label' => 'Edit',
                     ];
                 }
 
-                $actions[] = [
-                    'type' => 'button',
-                    'route' => 'getId(' . $id . ')',
-                    'label' => 'Hapus',
-                ];
+                if ($user->hasRole(['editor'])  && in_array($publish_status, ['waiting', 'rejected', 'editing'])) {
+                    $actions[] = [
+                        'type' => 'button',
+                        'route' => 'getDataById(' . $id . ')',
+                        'label' => 'Edit',
+                    ];
+                }
+
+                if ($user->hasRole(['editor', 'admin', 'superadmin']) && $publish_status == 'editing') {
+                    $actions[] = [
+                        'type' => 'button',
+                        'route' => 'approve(' . $id . ')',
+                        'label' => 'Publish',
+                    ];
+                    // $actions[] = [
+                    //     'type' => 'button',
+                    //     'route' => 'showModalReject(' . $id . ')',
+                    //     'label' => 'Reject',
+                    // ];
+                    $actions[] = [
+                        'type' => 'button',
+                        'route' => 'getId(' . $id . ')',
+                        'label' => 'Hapus',
+                    ];
+                }
+
 
                 return view('crud-generator-components::action-button', [
                     'id' => $id,

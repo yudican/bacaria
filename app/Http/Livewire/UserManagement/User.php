@@ -41,7 +41,7 @@ class User extends Component
         $user = ModelsUser::create([
             'name'  => $this->name,
             'email'  => $this->email,
-            'password'  => $this->password ?? Hash::make($role_type . '123')
+            'password'  => $this->password ? Hash::make($this->password) : Hash::make($role_type . '123')
         ]);
 
         $team = Team::find($this->team_id);
@@ -57,11 +57,16 @@ class User extends Component
         $this->_validate();
         $user = ModelsUser::find($this->users_id);
         $role_type = Role::find($this->role_id)->role_type;
-        $user->update([
+
+        $data = [
             'name'  => $this->name,
             'email'  => $this->email,
-            'password'  => $this->password ?? Hash::make($role_type . '123')
-        ]);
+        ];
+        $user->update();
+
+        if ($this->password) {
+            $data['password'] = Hash::make($this->password);
+        }
 
         $team = Team::find($this->team_id);
         $team->users()->sync($user, ['role' => $role_type]);

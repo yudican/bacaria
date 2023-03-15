@@ -105,7 +105,6 @@ class PostController extends Component
             return $this->emit('showAlert', ['msg' => 'Data Berhasil Disimpan']);
         } catch (\Throwable $th) {
             DB::rollback();
-            dd($th->getMessage());
             $this->_reset();
             return $this->emit('showAlertError', ['msg' => 'Data Gagal Disimpan']);
         }
@@ -120,7 +119,7 @@ class PostController extends Component
             $data = [
                 'category_id'  => $this->category_id,
                 'content'  => $this->content,
-                'editor'  => $this->editor,
+                'editor'  => auth()->user()->name,
                 'image'  => $this->image,
                 'slug'  => $this->slug,
                 'status'  => $this->status,
@@ -177,7 +176,7 @@ class PostController extends Component
         $rule = [
             'category_id'  => 'required',
             'content'  => 'required',
-            'editor'  => 'required',
+            // 'editor'  => 'required',
             'slug'  => 'required',
             'status'  => 'required',
             'caption'  => 'required',
@@ -192,7 +191,14 @@ class PostController extends Component
     public function getDataPostById($post_id)
     {
         $this->_reset();
+        $role = auth()->user()->role;
         $row = Post::find($post_id);
+        if (in_array($role->role_type, ['admin', 'editor'])) {
+            if (in_array($row->publish_status, ['waiting', 'rejected'])) {
+                $row->update(['publish_status' => 'editing']);
+            }
+        }
+
         $this->post_id = $row->id;
         $this->approved_user_id = $row->approved_user_id;
         $this->author_id = $row->author_id;

@@ -32,7 +32,8 @@
                         <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
                     </x-select>
-                    <x-text-field type="text" name="editor" label="Editor" placeholder="ex: aldo;yuda" />
+                    {{--
+                    <x-text-field type="text" name="editor" label="Editor" placeholder="ex: aldo;yuda" /> --}}
                     <x-input-image foto="{{$image}}" path="{{optional($image_path)->temporaryUrl()}}" name="image_path" label="Image" />
                     <x-textarea name="caption" label="Caption" placeholder="Image caption" />
                     <x-select name="comment_status" label="Comment Status">

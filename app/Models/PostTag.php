@@ -13,6 +13,11 @@ class PostTag extends Model
 
     protected $dates = [];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Get the post that owns the PostTag
      *

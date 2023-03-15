@@ -23,6 +23,18 @@ class Post extends Model
 
     protected $appends = ['image_path', 'author_name', 'category_name', 'approved_user_name', 'rejected_user_name', 'tags'];
 
+    protected $hidden = [
+        'category_id',
+        'author_id',
+        'approved_user_id',
+        'rejected_user_id',
+        'image',
+        'reject_reason',
+        'updated_at',
+        'approved_user_name',
+        'rejected_user_name',
+    ];
+
     /**
      * Get all of the postTags for the Post
      *
@@ -40,7 +52,7 @@ class Post extends Model
      */
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(PostComment::class);
     }
 
     /**
