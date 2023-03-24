@@ -118,4 +118,24 @@ class User extends Authenticatable
 
         return false;
     }
+
+    /**
+     * Get all of the postLikes for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function postLikes()
+    {
+        return $this->hasMany(PostLike::class);
+    }
+
+    /**
+     * Get all of the postComments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function postComments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
 }

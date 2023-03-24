@@ -21,7 +21,7 @@ class Post extends Model
 
     protected $dates = [];
 
-    protected $appends = ['image_path', 'author_name', 'category_name', 'approved_user_name', 'rejected_user_name', 'tags'];
+    protected $appends = ['image_path', 'author_image', 'author_name', 'category_name', 'approved_user_name', 'rejected_user_name', 'tags', 'time_ago'];
 
     protected $hidden = [
         'category_id',
@@ -34,6 +34,9 @@ class Post extends Model
         'approved_user_name',
         'rejected_user_name',
     ];
+
+    // with count
+    protected $withCount = ['likes', 'comments'];
 
     /**
      * Get all of the postTags for the Post
@@ -53,6 +56,16 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(PostComment::class);
+    }
+
+    /**
+     * Get all of the likes for the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany(PostLike::class);
     }
 
     /**
@@ -106,6 +119,12 @@ class Post extends Model
         return $user ? $user->name : '-';
     }
 
+    public function getAuthorImageAttribute()
+    {
+        $user = User::find($this->author_id);
+        return $user ? $user->profile_photo_url : '-';
+    }
+
     public function getCategoryNameAttribute()
     {
         $category = Category::find($this->category_id);
@@ -129,5 +148,10 @@ class Post extends Model
     {
         $tags = PostTag::where('post_id', $this->id)->implode('name', ',');
         return $tags;
+    }
+
+    public function getTimeAgoAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }

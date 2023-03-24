@@ -25,14 +25,20 @@
             @if ($form_active)
             <div class="card">
                 <div class="card-body">
-                    <x-select name="jenis_iklan_id" label="Jenis Iklan Id">
+                    <x-select name="jenis_iklan_id" label="Jenis Iklan">
                         <option value="">Select Jenis Iklan</option>
                         @foreach ($jenis_iklan as $item)
                         <option value="{{$item->id}}">{{$item->nama_jenis_iklan}}</option>
                         @endforeach
                     </x-select>
                     <x-text-field type="text" name="nama_iklan" label="Nama Iklan" />
-                    <x-text-field type="text" name="kode_iklan" label="Kode Iklan" />
+                    <x-select name="kode_iklan" label="Kode Iklan">
+                        <option value="">Select Kode Iklan</option>
+                        <option value="SIDPOST">Sidebar Post</option>
+                        <option value="SIDRIGHT">Sidebar Right </option>
+                        <option value="SIDLEFT">Sidebar Left</option>
+                        <option value="BANNER">Iklan Banner</option>
+                    </x-select>
                     <x-input-image foto="{{$image}}" path="{{optional($image_path)->temporaryUrl()}}" name="image_path" label="Image" />
                     <x-text-field type="text" name="link" label="Link" />
 
