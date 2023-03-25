@@ -155,10 +155,14 @@ class Post extends Model
         // get hours created
         $hours = $this->created_at->diffInHours(now());
 
-        if ($hours < 24) {
-            return $hours . ' jam';
+        if ($hours < 1) {
+            return $this->created_at->diffInMinutes(now()) . ' menit';
         } else {
-            return $this->created_at->format('d M Y');
+            if ($hours < 24) {
+                return $hours . ' jam';
+            } else {
+                return $this->created_at->format('d M Y');
+            }
         }
     }
 }
