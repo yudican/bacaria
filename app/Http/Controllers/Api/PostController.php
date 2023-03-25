@@ -7,6 +7,7 @@ use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -26,7 +27,7 @@ class PostController extends Controller
     // get post by slug
     public function show($slug)
     {
-        $post = Post::with(['comments', 'postTags'])->where('slug', $slug)->first();
+        $post = Post::with(['comments', 'tags'])->where('slug', $slug)->first();
         return response()->json([
             'status' => 'success',
             'data' => new PostResource($post)
@@ -36,19 +37,18 @@ class PostController extends Controller
     // get post by tag
     public function tag($slug)
     {
-        $post = Post::where('slug', $slug)->first();
-        $posts = $post->postTags()->paginate(10);
+        $tag = Tag::where('slug', $slug)->first();
+        $posts = $tag->posts()->paginate(10);
         return response()->json([
             'status' => 'success',
-            'data' => PostResource::collection($posts)
+            'data' => $posts
         ]);
     }
 
     // get post by author
-    public function author($slug)
+    public function author($author_id)
     {
-        $post = Post::where('slug', $slug)->first();
-        $posts = $post->author()->paginate(10);
+        $posts = Post::where('user_id', $author_id)->paginate(10);
         return response()->json([
             'status' => 'success',
             'data' => $posts

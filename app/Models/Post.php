@@ -21,7 +21,7 @@ class Post extends Model
 
     protected $dates = [];
 
-    protected $appends = ['image_path', 'author_image', 'author_name', 'category_name', 'approved_user_name', 'rejected_user_name', 'tags', 'time_ago'];
+    protected $appends = ['image_path', 'author_image', 'author_name', 'category_name', 'approved_user_name', 'rejected_user_name', 'tags', 'tag_lists', 'time_ago'];
 
     protected $hidden = [
         'category_id',
@@ -33,6 +33,7 @@ class Post extends Model
         'updated_at',
         'approved_user_name',
         'rejected_user_name',
+        'pivot'
     ];
 
     // with count
@@ -43,9 +44,9 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function postTags()
+    public function tags()
     {
-        return $this->hasMany(PostTag::class);
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
     }
 
     /**
@@ -143,10 +144,16 @@ class Post extends Model
         return $user ? $user->name : '-';
     }
 
+    public function getTagListsAttribute()
+    {
+        $tags = $this->tags()->get()->pluck('name');
+        return $tags;
+    }
+
 
     public function getTagsAttribute()
     {
-        $tags = PostTag::where('post_id', $this->id)->implode('name', ',');
+        $tags = $this->tags()->get()->implode('name', ', ');
         return $tags;
     }
 

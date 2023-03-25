@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\DataIklan;
 use App\Models\Post;
 use App\Models\PostTag;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -89,17 +90,17 @@ class PostController extends Component
 
             $post = Post::create($data);
             $tags = explode(',', $this->tags);
-            $tagsLists = [];
             foreach ($tags as $key => $value) {
-                $tagsLists[] = [
-                    'post_id' => $post->id,
+                $uid_tag = hash('crc32', Carbon::now()->format('U'));
+                $tag = Tag::create([
                     'name' => $value,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ];
+                    'slug' => Str::slug($value) . '-' . $uid_tag,
+                    'uid_tag' => hash('crc32', Carbon::now()->format('U')),
+                ]);
+
+                $tag->posts()->sync($post->id);
             }
 
-            PostTag::insert($tagsLists);
             DB::commit();
             $this->_reset();
             return $this->emit('showAlert', ['msg' => 'Data Berhasil Disimpan']);
@@ -139,25 +140,23 @@ class PostController extends Component
             }
 
             $row->update($data);
-            $row->postTags()->delete();
             $tags = explode(',', $this->tags);
-            $tagsLists = [];
             foreach ($tags as $key => $value) {
-                $tagsLists[] = [
-                    'post_id' => $row->id,
+                $uid_tag = hash('crc32', Carbon::now()->format('U'));
+                $tag = Tag::create([
                     'name' => $value,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ];
+                    'slug' => Str::slug($value) . '-' . $uid_tag,
+                    'uid_tag' => hash('crc32', Carbon::now()->format('U')),
+                ]);
+
+                $tag->posts()->sync($row->id);
             }
 
-            PostTag::insert($tagsLists);
             DB::commit();
             $this->_reset();
             return $this->emit('showAlert', ['msg' => 'Data Berhasil Diupdate']);
         } catch (\Throwable $th) {
             DB::rollback();
-
             $this->_reset();
             return $this->emit('showAlertError', ['msg' => 'Data Gagal Diupdate']);
         }

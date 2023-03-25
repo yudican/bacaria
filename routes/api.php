@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::post('posts', [PostController::class, 'index']);
     Route::get('posts/{slug}', [PostController::class, 'show']);
     Route::get('posts/tag/{slug}', [PostController::class, 'tag']);
-    Route::get('posts/author/{slug}', [PostController::class, 'author']);
+    Route::get('posts/author/{author_id}', [PostController::class, 'author']);
     Route::post('posts/search', [PostController::class, 'search']);
 
     // get category list
@@ -37,4 +38,6 @@ Route::prefix('v1')->group(function () {
 
     // get ads list
     Route::post('ads', [AdsController::class, 'index']);
+    Route::get('tag/popular', [TagController::class, 'popularTags']);
+    Route::get('tag/topten', [TagController::class, 'topTags']);
 });
