@@ -56,6 +56,7 @@ class Category extends Model
 
     public function getLayoutNameAttribute()
     {
-        return $this->layout ? $this->layout->name : null;
+        $layout = Layout::find($this->layout_id);
+        return $layout ? $layout->name : null;
     }
 }

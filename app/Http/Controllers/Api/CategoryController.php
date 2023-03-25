@@ -42,10 +42,9 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function posts(Request $request)
+    public function posts()
     {
-        $perPage = $request->query('page', 10);
-        $categories = Category::with(['posts'])->paginate($perPage);
+        $categories = Category::with(['posts'])->get();
         return response()->json([
             'status' => 'success',
             'data' => $categories

@@ -30,7 +30,7 @@ Route::prefix('v1')->group(function () {
     Route::post('posts/search', [PostController::class, 'search']);
 
     // get category list
-    Route::post('category', [CategoryController::class, 'index']);
+    Route::get('category', [CategoryController::class, 'index']);
     Route::get('category/{slug}', [CategoryController::class, 'show']);
     Route::get('category/posts', [CategoryController::class, 'posts']);
     Route::get('category/post/{slug}', [CategoryController::class, 'post']);
