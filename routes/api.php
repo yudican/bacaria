@@ -32,7 +32,7 @@ Route::prefix('v1')->group(function () {
     // get category list
     Route::get('category', [CategoryController::class, 'index']);
     Route::get('category/{slug}', [CategoryController::class, 'show']);
-    Route::get('category/posts', [CategoryController::class, 'posts']);
+    Route::get('category/all/posts', [CategoryController::class, 'postLists']);
     Route::get('category/post/{slug}', [CategoryController::class, 'post']);
 
     // get ads list

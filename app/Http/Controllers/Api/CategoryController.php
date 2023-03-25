@@ -42,9 +42,9 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function posts()
+    public function postLists()
     {
-        $categories = Category::with(['banners'])->get();
+        $categories = Category::with(['banners', 'posts'])->get();
         return response()->json([
             'status' => 'success',
             'data' => $categories
