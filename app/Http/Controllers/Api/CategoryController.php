@@ -49,26 +49,26 @@ class CategoryController extends Controller
 
         foreach ($categories as $key => $value) {
             if ($value->layout_name == 'layout-1') {
-                return $newCategories['posts'][$key][] = [
+                $newCategories['posts'][$key][] = [
                     'data' => $value->posts()->limit(5)->orderBy('created_at', 'desc')->get(),
                     'dataTwo' => $value->posts()->limit(7)->get(),
                 ];
             }
 
             if ($value->layout_name == 'layout-2') {
-                return $newCategories['posts'][$key][] = [
+                $newCategories['posts'][$key][] = [
                     'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
                 ];
             }
 
             if ($value->layout_name == 'layout-3') {
-                return $newCategories['posts'][$key][] = [
+                $newCategories['posts'][$key][] = [
                     'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
                 ];
             }
 
             if ($value->layout_name == 'layout-4') {
-                return $newCategories['posts'][$key][] = [
+                $newCategories['posts'][$key][] = [
                     'data' => $value->posts()->limit(1)->orderBy('created_at', 'desc')->get(),
                     'dataTwo' => $value->posts()->limit(7)->get(),
                     'dataThree' => $value->posts()->limit(7)->get(),
@@ -76,7 +76,7 @@ class CategoryController extends Controller
             }
 
             if ($value->layout_name == 'layout-5') {
-                return $newCategories['posts'][$key][] = [
+                $newCategories['posts'][$key][] = [
                     'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
                 ];
             }
