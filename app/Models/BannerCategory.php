@@ -17,6 +17,8 @@ class BannerCategory extends Model
 
     protected $dates = [];
 
+    protected $appends = ['image_url'];
+
     /**
      * Get the category that owns the BannerCategory
      *
@@ -25,5 +27,14 @@ class BannerCategory extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return asset('storage/' . $this->image);
+        }
+
+        return null;
     }
 }

@@ -19,6 +19,13 @@ class Category extends Model
 
     protected $appends = ['image_url', 'layout_name'];
 
+    protected $hidden = [
+        'image',
+        'layout_id',
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Get all of the bannerimage for the Category
      *
