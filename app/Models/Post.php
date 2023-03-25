@@ -24,10 +24,10 @@ class Post extends Model
     protected $appends = ['image_path', 'author_image', 'author_name', 'category_name', 'approved_user_name', 'rejected_user_name', 'tags', 'time_ago'];
 
     protected $hidden = [
-        'category_id',
-        'author_id',
-        'approved_user_id',
-        'rejected_user_id',
+        // 'category_id',
+        // 'author_id',
+        // 'approved_user_id',
+        // 'rejected_user_id',
         'image',
         'reject_reason',
         'updated_at',

@@ -36,7 +36,7 @@ class Category extends Model
      */
     public function posts()
     {
-        return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Post::class, 'category_id')->limit(10)->orderBy('created_at', 'desc');
     }
 
     /**
