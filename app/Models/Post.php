@@ -152,6 +152,13 @@ class Post extends Model
 
     public function getTimeAgoAttribute()
     {
-        return $this->created_at->diffForHumans();
+        // get hours created
+        $hours = $this->created_at->diffInHours(now());
+
+        if ($hours < 24) {
+            return $hours . ' jam';
+        } else {
+            return $this->created_at->format('d M Y');
+        }
     }
 }
