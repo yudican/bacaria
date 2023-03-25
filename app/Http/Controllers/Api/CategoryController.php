@@ -11,11 +11,9 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     // get category list
-    public function index(Request $request)
+    public function index()
     {
-        $perPage = $request->query('page', 10);
-
-        $categories = Category::paginate($perPage);
+        $categories = Category::all();
 
         return response()->json([
             'status' => 'success',
@@ -41,6 +39,16 @@ class CategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $posts
+        ]);
+    }
+
+    public function posts(Request $request)
+    {
+        $perPage = $request->query('page', 10);
+        $categories = Category::with(['posts'])->paginate($perPage);
+        return response()->json([
+            'status' => 'success',
+            'data' => $categories
         ]);
     }
 }

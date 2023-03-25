@@ -17,6 +17,8 @@ class Category extends Model
 
     protected $dates = [];
 
+    protected $appends = ['image_url', 'layout_name'];
+
     /**
      * Get all of the bannerimage for the Category
      *
@@ -34,7 +36,7 @@ class Category extends Model
      */
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->limit(10)->orderBy('created_at', 'desc');
     }
 
     /**
@@ -45,5 +47,15 @@ class Category extends Model
     public function layout()
     {
         return $this->belongsTo(Layout::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
+    public function getLayoutNameAttribute()
+    {
+        return $this->layout ? $this->layout->name : null;
     }
 }
