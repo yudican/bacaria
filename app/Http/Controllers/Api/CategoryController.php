@@ -55,9 +55,13 @@ class CategoryController extends Controller
                         'dataTwo' => $value->posts()->limit(7)->get(),
                     ];
                 case 'layout-2':
-                    $newCategories[$key]['posts'][] = $value->posts()->limit(7)->orderBy('created_at', 'desc')->get();
+                    $newCategories[$key]['posts'][] = [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ];
                 case 'layout-3':
-                    $newCategories[$key]['posts'][] = $value->posts()->limit(5)->orderBy('created_at', 'desc')->get();
+                    $newCategories[$key]['posts'][] = [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ];
                 case 'layout-4':
                     $newCategories[$key]['posts'][] = [
                         'data' => $value->posts()->limit(1)->orderBy('created_at', 'desc')->get(),
@@ -65,9 +69,13 @@ class CategoryController extends Controller
                         'dataThree' => $value->posts()->limit(7)->get(),
                     ];
                 case 'layout-5':
-                    $newCategories[$key]['posts'][] = $value->posts()->limit(5)->orderBy('created_at', 'desc')->get();
+                    $newCategories[$key]['posts'][] = [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ];
                 default:
-                    $newCategories[$key]['posts'][] = $value->posts()->limit(5)->orderBy('created_at', 'desc')->get();
+                    $newCategories[$key]['posts'][] = [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ];
             }
         }
 
