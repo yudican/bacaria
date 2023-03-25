@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Master\CategoryResource;
 use App\Http\Resources\PostResource;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -56,8 +57,8 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => $value->posts()->limit(5)->orderBy('created_at', 'desc')->get(),
-                        'dataTwo' => $value->posts()->limit(7)->get(),
+                        'data' => Post::limit(5)->orderBy('created_at', 'desc')->get(),
+                        'dataTwo' => Post::limit(7)->get(),
                     ],
 
                 ];
@@ -71,7 +72,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                        'data' => Post::limit(7)->orderBy('created_at', 'desc')->get()
                     ]
                 ];
             }
@@ -84,7 +85,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                        'data' => Post::limit(7)->orderBy('created_at', 'desc')->get()
                     ]
                 ];
             }
@@ -97,9 +98,9 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => $value->posts()->limit(1)->orderBy('created_at', 'desc')->get(),
-                        'dataTwo' => $value->posts()->limit(7)->get(),
-                        'dataThree' => $value->posts()->limit(7)->get(),
+                        'data' => Post::limit(1)->orderBy('created_at', 'desc')->get(),
+                        'dataTwo' => Post::limit(7)->get(),
+                        'dataThree' => Post::limit(7)->get(),
                     ]
 
                 ];
@@ -113,7 +114,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                        'data' => Post::limit(7)->orderBy('created_at', 'desc')->get()
                     ]
                 ];
             }
