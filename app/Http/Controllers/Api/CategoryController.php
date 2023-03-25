@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
     public function posts()
     {
-        $categories = Category::with(['posts'])->get();
+        $categories = Category::with(['banners'])->get();
         return response()->json([
             'status' => 'success',
             'data' => $categories
