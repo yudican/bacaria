@@ -49,35 +49,72 @@ class CategoryController extends Controller
 
         foreach ($categories as $key => $value) {
             if ($value->layout_name == 'layout-1') {
-                $newCategories['posts'][$key][] = [
-                    'data' => $value->posts()->limit(5)->orderBy('created_at', 'desc')->get(),
-                    'dataTwo' => $value->posts()->limit(7)->get(),
+                $newCategories[$key][] = [
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'slug' => $value->slug,
+                    'banners' => $value->banners,
+                    'layout_name' => $value->layout_name,
+                    'posts' => [
+                        'data' => $value->posts()->limit(5)->orderBy('created_at', 'desc')->get(),
+                        'dataTwo' => $value->posts()->limit(7)->get(),
+                    ],
+
                 ];
             }
 
             if ($value->layout_name == 'layout-2') {
-                $newCategories['posts'][$key][] = [
-                    'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                $newCategories[$key][] = [
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'slug' => $value->slug,
+                    'banners' => $value->banners,
+                    'layout_name' => $value->layout_name,
+                    'posts' => [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ]
                 ];
             }
 
             if ($value->layout_name == 'layout-3') {
-                $newCategories['posts'][$key][] = [
-                    'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                $newCategories[$key][] = [
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'slug' => $value->slug,
+                    'banners' => $value->banners,
+                    'layout_name' => $value->layout_name,
+                    'posts' => [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ]
                 ];
             }
 
             if ($value->layout_name == 'layout-4') {
-                $newCategories['posts'][$key][] = [
-                    'data' => $value->posts()->limit(1)->orderBy('created_at', 'desc')->get(),
-                    'dataTwo' => $value->posts()->limit(7)->get(),
-                    'dataThree' => $value->posts()->limit(7)->get(),
+                $newCategories[$key][] = [
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'slug' => $value->slug,
+                    'banners' => $value->banners,
+                    'layout_name' => $value->layout_name,
+                    'posts' => [
+                        'data' => $value->posts()->limit(1)->orderBy('created_at', 'desc')->get(),
+                        'dataTwo' => $value->posts()->limit(7)->get(),
+                        'dataThree' => $value->posts()->limit(7)->get(),
+                    ]
+
                 ];
             }
 
             if ($value->layout_name == 'layout-5') {
-                $newCategories['posts'][$key][] = [
-                    'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                $newCategories[$key][] = [
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'slug' => $value->slug,
+                    'banners' => $value->banners,
+                    'layout_name' => $value->layout_name,
+                    'posts' => [
+                        'data' => $value->posts()->limit(7)->orderBy('created_at', 'desc')->get()
+                    ]
                 ];
             }
         }
