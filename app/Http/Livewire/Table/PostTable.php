@@ -21,7 +21,7 @@ class PostTable extends LivewireDatatable
         if ($user->hasRole(['reporter'])) {
             return Post::where('author_id', $user->id);
         } else if ($user->hasRole(['editor'])) {
-            return Post::query();
+            return Post::query()->where('status', 'publish');
         } else {
         }
         return Post::query();
@@ -70,11 +70,6 @@ class PostTable extends LivewireDatatable
                         'route' => 'approve(' . $id . ')',
                         'label' => 'Publish',
                     ];
-                    // $actions[] = [
-                    //     'type' => 'button',
-                    //     'route' => 'showModalReject(' . $id . ')',
-                    //     'label' => 'Reject',
-                    // ];
                     $actions[] = [
                         'type' => 'button',
                         'route' => 'getId(' . $id . ')',

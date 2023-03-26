@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Master\CategoryResource;
+use App\Http\Resources\PostListResource;
 use App\Http\Resources\PostResource;
 use App\Models\Category;
 use App\Models\Post;
@@ -57,8 +58,8 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => Post::where('category_id', $value->id)->limit(5)->orderBy('created_at', 'desc')->get(),
-                        'dataTwo' => Post::where('category_id', $value->id)->limit(7)->get(),
+                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->orderBy('likes_count', 'asc')->limit(5)->get()),
+                        'dataTwo' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->orderBy('likes_count', 'asc')->limit(7)->get()),
                     ],
 
                 ];
@@ -72,7 +73,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => Post::where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get()
+                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get())
                     ]
                 ];
             }
@@ -85,7 +86,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => Post::where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get()
+                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get())
                     ]
                 ];
             }
@@ -98,9 +99,9 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => Post::where('category_id', $value->id)->limit(1)->orderBy('created_at', 'desc')->get(),
-                        'dataTwo' => Post::where('category_id', $value->id)->limit(7)->get(),
-                        'dataThree' => Post::where('category_id', $value->id)->limit(7)->get(),
+                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(1)->orderBy('created_at', 'desc')->get()),
+                        'dataTwo' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->get()),
+                        'dataThree' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->get()),
                     ]
 
                 ];
@@ -114,7 +115,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => Post::where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get()
+                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get())
                     ]
                 ];
             }
@@ -122,7 +123,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $newCategories
+            'data' => array_values($newCategories)
         ]);
     }
 }

@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         $perPage = $request->perPage ?? 10;
 
-        $posts = Post::paginate($perPage);
+        $posts = Post::whereStatus('publish')->wherePublishStatus('published')->paginate($perPage);
         return response()->json([
             'status' => 'success',
             'data' => $posts
@@ -27,7 +27,7 @@ class PostController extends Controller
     // get post by slug
     public function show($slug)
     {
-        $post = Post::with(['comments', 'tags'])->where('slug', $slug)->first();
+        $post = Post::with(['comments', 'tags'])->whereStatus('publish')->wherePublishStatus('published')->where('slug', $slug)->first();
         return response()->json([
             'status' => 'success',
             'data' => new PostResource($post)
@@ -48,7 +48,7 @@ class PostController extends Controller
     // get post by author
     public function author($author_id)
     {
-        $posts = Post::where('user_id', $author_id)->paginate(10);
+        $posts = Post::where('user_id', $author_id)->whereStatus('publish')->wherePublishStatus('published')->paginate(10);
         return response()->json([
             'status' => 'success',
             'data' => $posts
@@ -61,7 +61,7 @@ class PostController extends Controller
         $perPage = $request->query('page', 10);
         $search = $request->query('search');
 
-        $posts = Post::query();
+        $posts = Post::query()->whereStatus('publish')->wherePublishStatus('published');
         $posts->where(function ($query) use ($search) {
             $query->where('title', 'like', '%' . $search . '%')->orWhere('content', 'like', '%' . $search . '%');
         })->paginate($perPage);
