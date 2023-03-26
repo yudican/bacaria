@@ -54,7 +54,7 @@ class DataIklanController extends Component
 
         if ($this->image_path) {
             $image = $this->image_path->store('upload', 'public');
-            $data = ['image' => $image];
+            $data['image'] = $image;
         }
 
         DataIklan::create($data);
@@ -78,7 +78,7 @@ class DataIklanController extends Component
 
         if ($this->image_path) {
             $image = $this->image_path->store('upload', 'public');
-            $data = ['image' => $image];
+            $data['image'] = $image;
             if (Storage::exists('public/' . $this->image)) {
                 Storage::delete('public/' . $this->image);
             }
@@ -162,6 +162,7 @@ class DataIklanController extends Component
         $this->nama_iklan = null;
         $this->kode_iklan = null;
         $this->image_path = null;
+        $this->image = null;
         $this->link = null;
         $this->form = true;
         $this->form_active = false;
