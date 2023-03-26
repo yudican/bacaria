@@ -17,6 +17,14 @@ class DataIklan extends Model
 
     protected $dates = [];
 
+    protected $appends = ['image_url'];
+
+    protected $hidden = [
+        'image',
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Get the jenisIklan that owns the DataIklan
      *
@@ -25,5 +33,10 @@ class DataIklan extends Model
     public function jenisIklan()
     {
         return $this->belongsTo(JenisIklan::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
     }
 }
