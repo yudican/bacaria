@@ -37,7 +37,7 @@ Route::prefix('v1')->group(function () {
     Route::get('category/post/{slug}', [CategoryController::class, 'post']);
 
     // get ads list
-    Route::post('ads', [AdsController::class, 'index']);
+    Route::get('ads', [AdsController::class, 'index']);
     Route::get('tag/popular', [TagController::class, 'popularTags']);
     Route::get('tag/topten', [TagController::class, 'topTags']);
 });
