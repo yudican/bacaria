@@ -58,8 +58,8 @@ class PostController extends Controller
     // get post by search
     public function search(Request $request)
     {
-        $perPage = $request->query('page', 10);
-        $search = $request->query('search');
+        $perPage = $request->page;
+        $search = $request->search;
 
         $posts = Post::query()->whereStatus('publish')->wherePublishStatus('published');
         $posts->where(function ($query) use ($search) {

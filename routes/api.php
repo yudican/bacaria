@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TagController;
 use Illuminate\Http\Request;
@@ -40,4 +41,7 @@ Route::prefix('v1')->group(function () {
     Route::get('ads', [AdsController::class, 'index']);
     Route::get('tag/popular', [TagController::class, 'popularTags']);
     Route::get('tag/topten', [TagController::class, 'topTags']);
+
+    // get page list
+    Route::get('page/list', [PageController::class, 'list']);
 });

@@ -19,6 +19,7 @@ class DataHalaman extends Model
 
     protected $dates = [];
 
+    protected $with = ['category'];
     /**
      * Get the category that owns the DataHalaman
      *

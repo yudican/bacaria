@@ -73,7 +73,7 @@ class CategoryController extends Controller
                     'banners' => $value->banners,
                     'layout_name' => $value->layout_name,
                     'posts' => [
-                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get())
+                        'data' => PostListResource::collection(Post::whereStatus('publish')->wherePublishStatus('published')->where('category_id', $value->id)->limit(7)->orderBy('created_at', 'desc')->get()),
                     ]
                 ];
             }
