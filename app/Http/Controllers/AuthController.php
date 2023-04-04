@@ -108,6 +108,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'google_id' => $request->google_id,
                 'facebook_id' => $request->facebook_id,
+                'profile_photo_path' => $request->photoURL ?? null,
             ]);
             $team = Team::find(1);
             $team->users()->attach($createdUser, ['role' => 'member']);

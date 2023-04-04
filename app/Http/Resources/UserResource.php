@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'google_id' => $this->google_id,
             'facebook_id' => $this->facebook_id,
             'role' => $this->role,
+            'profile_image' => $this->profile_photo_path ?? $this->profile_photo_url,
         ];
     }
 }
