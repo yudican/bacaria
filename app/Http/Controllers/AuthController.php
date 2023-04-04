@@ -49,6 +49,25 @@ class AuthController extends Controller
         }
 
         if ($request->method == 'form') {
+
+            if ($user->google_id) {
+                $respon = [
+                    'error' => true,
+                    'status_code' => 401,
+                    'message' => 'Maaf, email yang Anda gunakan sudah terdaftar dengan akun Google',
+                ];
+                return response()->json($respon, 401);
+            }
+
+            if ($user->facebook_id) {
+                $respon = [
+                    'error' => true,
+                    'status_code' => 401,
+                    'message' => 'Maaf, email yang Anda gunakan sudah terdaftar dengan akun Facebook',
+                ];
+                return response()->json($respon, 401);
+            }
+
             if (!Hash::check($request->password, $user->password)) {
                 $respon = [
                     'error' => true,
@@ -70,7 +89,6 @@ class AuthController extends Controller
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
                 'user' => new UserResource($user),
-                'update' => 'ok kah'
             ]
         ];
         return response()->json($respon, 200);
