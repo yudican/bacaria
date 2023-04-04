@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,13 +102,16 @@ class AuthController extends Controller
                 ]);
             }
 
-            User::create([
+            $createdUser = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'google_id' => $request->google_id,
                 'facebook_id' => $request->facebook_id,
             ]);
+            $team = Team::find(1);
+            $team->users()->attach($createdUser, ['role' => 'member']);
+            $createdUser->roles()->attach('0feb7d3a-90c0-42b9-be3f-63757088cb9a');
 
             DB::commit();
             return response()->json([
@@ -122,7 +126,8 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'User created failed',
-            ]);
+                'error' => $th->getMessage()
+            ], 400);
         }
         // $token = $user->createToken('api_token')->plainTextToken;
     }
