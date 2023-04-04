@@ -105,7 +105,7 @@ class AuthController extends Controller
             $createdUser = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'username' => $request->username,
+                'username' => explode('@', $request->email)[0],
                 'password' => Hash::make($request->password),
                 'google_id' => $request->google_id,
                 'facebook_id' => $request->facebook_id,
