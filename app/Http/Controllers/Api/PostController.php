@@ -105,7 +105,7 @@ class PostController extends Controller
             'user_id' => $user->id,
             'parent_id' => $request->parent_id,
             'comment' => $request->comment,
-            'status' => $request->status,
+            'status' => 'approved',
         ]);
 
         return response()->json([
