@@ -13,6 +13,16 @@ class PostComment extends Model
 
     protected $dates = [];
 
+    protected $appends = ['user_name', 'user_image', 'time_ago', 'date_created'];
+
+    protected $hidden = [
+        'user_id',
+        'post_id',
+        'updated_at',
+    ];
+
+    protected $with = ['childrens'];
+
     /**
      * Get the post that owns the PostComment
      *
@@ -52,5 +62,40 @@ class PostComment extends Model
     public function childrens()
     {
         return $this->hasMany(PostComment::class, 'parent_id');
+    }
+
+    public function getUserNameAttribute()
+    {
+        $user = User::find($this->user_id);
+
+        return $user->name ?? 'Member';
+    }
+
+    public function getUserImageAttribute()
+    {
+        $user = User::find($this->user_id);
+
+        return $user->profile_photo_path ?? $user->profile_photo_url;
+    }
+
+    public function getTimeAgoAttribute()
+    {
+        // get hours created
+        $hours = $this->created_at->diffInHours(now());
+
+        if ($hours < 1) {
+            return $this->created_at->diffInMinutes(now()) . ' menit';
+        } else {
+            if ($hours < 24) {
+                return $hours . ' jam';
+            } else {
+                return $this->created_at->format('d M Y');
+            }
+        }
+    }
+
+    public function getDateCreatedAttribute()
+    {
+        return $this->created_at->format('d M Y');
     }
 }
