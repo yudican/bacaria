@@ -75,10 +75,10 @@ class PostController extends Controller
     public function like($post_id)
     {
         $user = auth()->user();
-
+        $post = Post::where('uid_post', $post_id)->first();
         // unlike post
-        if ($user->postLikes()->where('post_id', $post_id)->exists()) {
-            $user->postLikes()->where('post_id', $post_id)->delete();
+        if ($user->postLikes()->where('post_id', $post->id)->exists()) {
+            $user->postLikes()->where('post_id', $post->id)->delete();
             return response()->json([
                 'status' => 'success',
                 'message' => 'Post unliked successfully'
@@ -100,8 +100,10 @@ class PostController extends Controller
     {
         $user = auth()->user();
 
+        $post = Post::where('uid_post', $post_id)->first();
+
         PostComment::create([
-            'post_id' => $post_id,
+            'post_id' => $post->id,
             'user_id' => $user->id,
             'parent_id' => $request->parent_id,
             'comment' => $request->comment,
