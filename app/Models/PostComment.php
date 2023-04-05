@@ -21,7 +21,7 @@ class PostComment extends Model
         'updated_at',
     ];
 
-    // protected $with = ['childrens'];
+    protected $with = ['childrens'];
 
     /**
      * Get the post that owns the PostComment
