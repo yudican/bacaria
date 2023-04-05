@@ -21,7 +21,7 @@ class PostComment extends Model
         'updated_at',
     ];
 
-    protected $with = ['childrens'];
+    // protected $with = ['childrens'];
 
     /**
      * Get the post that owns the PostComment
@@ -51,7 +51,7 @@ class PostComment extends Model
      */
     public function parent()
     {
-        return $this->belongsTo(PostComment::class, 'parent_id');
+        return $this->belongsTo(PostComment::class, 'parent_id')->where('parent_id', null)->with('parent');
     }
 
     /**
@@ -61,7 +61,7 @@ class PostComment extends Model
      */
     public function childrens()
     {
-        return $this->hasMany(PostComment::class, 'parent_id');
+        return $this->hasMany(PostComment::class, 'parent_id')->with('childrens');
     }
 
     public function getUserNameAttribute()
