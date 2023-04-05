@@ -81,8 +81,9 @@ class PostController extends Controller
         }
         $post = Post::where('uid_post', $post_id)->first();
         // unlike post
-        if ($user->postLikes()->where('post_id', $post->id)->exists()) {
-            $user->postLikes()->where('post_id', $post->id)->delete();
+        $postLike = PostLike::where('post_id', $post->id)->where('user_id', $user->id)->first();
+        if ($postLike) {
+            $postLike->delete();
             return response()->json([
                 'status' => 'success',
                 'message' => 'Post unliked successfully'
