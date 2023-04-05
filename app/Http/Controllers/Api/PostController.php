@@ -89,13 +89,17 @@ class PostController extends Controller
             ]);
         }
 
-
         PostLike::create([
             'post_id' => $post_id,
             'user_id' => $user->id,
             'ip_address' => request()->ip(),
             'user_agent' => request()->header('User-Agent'),
             'referer' => request()->header('referer')
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Post liked successfully'
         ]);
     }
 
