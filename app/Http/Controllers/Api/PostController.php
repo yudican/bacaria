@@ -75,10 +75,7 @@ class PostController extends Controller
     // like post
     public function like(Request $request, $post_id)
     {
-        $user = auth()->user();
-        if ($user) {
-            $user = User::find($request->user_id);
-        }
+        $user = User::find($request->user_id);
         $post = Post::where('uid_post', $post_id)->first();
         // unlike post
         $postLike = PostLike::where('post_id', $post->id)->where('user_id', $user->id)->first();
