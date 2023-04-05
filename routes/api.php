@@ -35,6 +35,12 @@ Route::prefix('v1')->group(function () {
     Route::get('posts/author/{author_id}', [PostController::class, 'author']);
     Route::post('posts/search', [PostController::class, 'search']);
 
+    // route with middleware
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('like/{post_id}', [PostController::class, 'like']);
+        Route::post('comment/{post_id}', [PostController::class, 'comment']);
+    });
+
     // get category list
     Route::get('category', [CategoryController::class, 'index']);
     Route::get('category/{slug}', [CategoryController::class, 'show']);
