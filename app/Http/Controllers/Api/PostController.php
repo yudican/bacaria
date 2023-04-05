@@ -88,7 +88,7 @@ class PostController extends Controller
         }
 
         PostLike::create([
-            'post_id' => $post_id,
+            'post_id' => $post->id,
             'user_id' => $user->id,
             'ip_address' => request()->ip(),
             'user_agent' => request()->header('User-Agent'),
