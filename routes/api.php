@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function () {
     Route::post('posts/search', [PostController::class, 'search']);
 
     // route with middleware
-    Route::get('posts/like/{post_id}', [PostController::class, 'like']);
+    Route::post('posts/like/{post_id}', [PostController::class, 'like']);
     Route::post('posts/comment/{post_id}', [PostController::class, 'comment']);
 
     // get category list

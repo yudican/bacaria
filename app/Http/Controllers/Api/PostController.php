@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -72,9 +73,12 @@ class PostController extends Controller
     }
 
     // like post
-    public function like($post_id)
+    public function like(Request $request, $post_id)
     {
         $user = auth()->user();
+        if ($user) {
+            $user = User::find($request->user_id);
+        }
         $post = Post::where('uid_post', $post_id)->first();
         // unlike post
         if ($user->postLikes()->where('post_id', $post->id)->exists()) {
@@ -104,7 +108,7 @@ class PostController extends Controller
 
         PostComment::create([
             'post_id' => $post->id,
-            'user_id' => $user->id,
+            'user_id' => $user ? $user->id : $request->user_id,
             'parent_id' => $request->parent_id,
             'comment' => $request->comment,
             'status' => 'approved',
