@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
     //use Uuid;
     use HasFactory;
+    use Searchable;
 
     //public $incrementing = false;
 

@@ -59,17 +59,20 @@ class PostController extends Controller
     // get post by search
     public function search(Request $request)
     {
-        $perPage = $request->page;
-        $search = $request->search;
+        // $perPage = $request->page;
+        // $search = $request->search;
 
-        $posts = Post::query()->whereStatus('publish')->wherePublishStatus('published');
-        $posts->where(function ($query) use ($search) {
-            $query->where('title', 'like', '%' . $search . '%')->orWhere('content', 'like', '%' . $search . '%');
-        })->paginate($perPage);
-        return response()->json([
-            'status' => 'success',
-            'data' => PostResource::collection($posts)
-        ]);
+        // $posts = Post::query()->whereStatus('publish')->wherePublishStatus('published');
+        // $posts->where(function ($query) use ($search) {
+        //     $query->where('title', 'like', '%' . $search . '%')->orWhere('content', 'like', '%' . $search . '%');
+        // })->paginate($perPage);
+        // return response()->json([
+        //     'status' => 'success',
+        //     'data' => PostResource::collection($posts)
+        // ]);
+        $products = Post::search($request->input('query'))->get();
+
+        return response()->json($products);
     }
 
     // like post
