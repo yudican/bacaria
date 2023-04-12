@@ -52,4 +52,5 @@ Route::prefix('v1')->group(function () {
 
     // get page list
     Route::get('page/list', [PageController::class, 'list']);
+    Route::get('page/show/{slug}', [PageController::class, 'show']);
 });
