@@ -42,7 +42,7 @@ class PostController extends Controller
         $posts = $tag->posts()->paginate(10);
         return response()->json([
             'status' => 'success',
-            'data' => $posts
+            'data' => PostResource::collection($posts)
         ]);
     }
 
