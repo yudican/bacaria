@@ -174,4 +174,9 @@ class Post extends Model
             }
         }
     }
+
+    public function searchableAs()
+    {
+        return 'bacaria';
+    }
 }

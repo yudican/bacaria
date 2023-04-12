@@ -33,7 +33,7 @@ Route::prefix('v1')->group(function () {
     Route::get('posts/{slug}', [PostController::class, 'show']);
     Route::get('posts/tag/{slug}', [PostController::class, 'tag']);
     Route::get('posts/author/{author_id}', [PostController::class, 'author']);
-    Route::get('posts/search?query={query}', [PostController::class, 'search']);
+    Route::get('posts/search/query', [PostController::class, 'search']);
 
     // route with middleware
     Route::post('posts/like/{post_id}', [PostController::class, 'like']);
