@@ -61,7 +61,19 @@ class PostController extends Controller
     {
         $posts = Post::search(request()->input('search'))->get();
 
-        return response()->json($posts);
+        $new_posts = [];
+
+        foreach ($posts as $post) {
+            $new_posts[] = [
+                'id' => $post->id,
+                'uid_post' => $post->uid_post,
+                'title' => $post->title,
+                'slug' => $post->slug
+            ];
+        }
+
+
+        return response()->json($new_posts);
     }
 
     // like post
