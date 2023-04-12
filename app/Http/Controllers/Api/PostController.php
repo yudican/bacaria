@@ -68,7 +68,8 @@ class PostController extends Controller
                 'id' => $post->id,
                 'uid_post' => $post->uid_post,
                 'title' => $post->title,
-                'slug' => $post->slug
+                'slug' => $post->slug,
+                'category' => $post->category_name,
             ];
         }
 
