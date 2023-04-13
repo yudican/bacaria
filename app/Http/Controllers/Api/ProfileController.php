@@ -67,7 +67,8 @@ class ProfileController extends Controller
             DB::rollBack();
             return response()->json([
                 'status' => 'error',
-                'message' => 'Gagal mengubah data profil'
+                'message' => 'Gagal mengubah data profil',
+                'data' => $th->getMessage()
             ], 400);
         }
     }
