@@ -15,6 +15,8 @@ use App\Http\Livewire\Post\DataIklanController;
 use App\Http\Livewire\Master\LayoutController;
 use App\Http\Livewire\Pages\DataHalamanController;
 use App\Http\Livewire\Post\PostController;
+use App\Http\Livewire\UpdateProfile;
+
 // [route_import_path]
 
 /*
@@ -55,6 +57,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'user.authorization']
     Route::get('/layout', LayoutController::class)->name('layout');
     Route::get('/data-halaman', DataHalamanController::class)->name('data-halaman');
     Route::get('/post', PostController::class)->name('post');
+    Route::get('/update-profile', UpdateProfile::class)->name('update-profile');
     // [route_path]
 
 });

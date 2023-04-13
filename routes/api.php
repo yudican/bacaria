@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
@@ -53,4 +54,9 @@ Route::prefix('v1')->group(function () {
     // get page list
     Route::get('page/list', [PageController::class, 'list']);
     Route::get('page/show/{slug}', [PageController::class, 'show']);
+
+    // profile
+    Route::get('profile', [ProfileController::class, 'profile']);
+    Route::post('profile/update', [ProfileController::class, 'updateProfile']);
+    Route::post('profile/update-password', [ProfileController::class, 'profile']);
 });
