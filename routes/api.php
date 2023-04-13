@@ -56,7 +56,7 @@ Route::prefix('v1')->group(function () {
     Route::get('page/show/{slug}', [PageController::class, 'show']);
 
     // profile
-    Route::get('profile', [ProfileController::class, 'profile']);
-    Route::post('profile/update', [ProfileController::class, 'updateProfile']);
-    Route::post('profile/update-password', [ProfileController::class, 'profile']);
+    Route::get('profile', [ProfileController::class, 'profile'])->middleware('auth:sanctum');
+    Route::post('profile/update', [ProfileController::class, 'updateProfile'])->middleware('auth:sanctum');
+    Route::post('profile/update-password', [ProfileController::class, 'profile'])->middleware('auth:sanctum');
 });
