@@ -16,7 +16,7 @@
         <div class="card-body">
           <x-text-field type="text" name="name" label="Nama Lengkap" />
           <x-text-field type="text" name="email" label="Email" />
-          <x-input-photo foto="{{$user_profile_photo}}" path="{{optional($user_profile_photo_path)->temporaryUrl()}}" name="user_profile_photo_path" label="Foto Profile" />
+          <x-input-image foto="{{$user_profile_photo}}" path="{{optional($user_profile_photo_path)->temporaryUrl()}}" name="user_profile_photo_path" label="Foto Profile" />
 
           <div class="form-group">
             <button class="btn btn-primary pull-right" wire:click="store">Simpan</button>
