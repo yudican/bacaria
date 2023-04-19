@@ -13,11 +13,11 @@ class DataIklan extends Model
 
     //public $incrementing = false;
 
-    protected $fillable = ['jenis_iklan_id', 'nama_iklan', 'kode_iklan', 'image', 'link'];
+    protected $fillable = ['jenis_iklan_id', 'nama_iklan', 'kode_iklan', 'image', 'link', 'ads_slot_id', 'ads_client_id'];
 
     protected $dates = [];
 
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'kode_jenis_iklan'];
 
     protected $hidden = [
         'image',
@@ -38,5 +38,10 @@ class DataIklan extends Model
     public function getImageUrlAttribute()
     {
         return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
+    public function getKodeJenisIklanAttribute()
+    {
+        return $this->jenisIklan ? $this->jenisIklan->kode_jenis_iklan : null;
     }
 }

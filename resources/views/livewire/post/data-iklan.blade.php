@@ -39,8 +39,17 @@
                         <option value="SIDLEFT">Sidebar Left</option>
                         <option value="BANNER">Iklan Banner</option>
                     </x-select>
-                    <x-input-image foto="{{$image}}" path="{{optional($image_path)->temporaryUrl()}}" name="image_path" label="Image" />
-                    <x-text-field type="text" name="link" label="Link" />
+                    @if ($kode_jenis_iklan == 'google-ads')
+                    <div>
+                        <x-text-field type="text" name="ads_slot_id" label="Ads Slot Id" />
+                        <x-text-field type="text" name="ads_client_id" label="Ads Client ID" />
+                    </div>
+                    @else
+                    <div>
+                        <x-input-image foto="{{$image}}" path="{{optional($image_path)->temporaryUrl()}}" name="image_path" label="Image" />
+                        <x-text-field type="text" name="link" label="Link" />
+                    </div>
+                    @endif
 
                     <div class="form-group">
                         <button class="btn btn-primary pull-right" wire:click="{{$update_mode ? 'update' : 'store'}}">Simpan</button>

@@ -26,11 +26,6 @@ class DataIklanTable extends LivewireDatatable
             Column::name('jenisIklan.nama_jenis_iklan')->label('Jenis Iklan')->searchable(),
             Column::name('nama_iklan')->label('Nama Iklan')->searchable(),
             Column::name('kode_iklan')->label('Kode Iklan')->searchable(),
-            Column::callback(['image'], function ($image) {
-                return view('livewire.components.photo', [
-                    'image_url' => asset('storage/' . $image),
-                ]);
-            })->label(__('Image')),
             Column::name('link')->label('Link')->searchable(),
 
             Column::callback(['id'], function ($id) {
