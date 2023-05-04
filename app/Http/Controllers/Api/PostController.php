@@ -28,7 +28,7 @@ class PostController extends Controller
     // get post by slug
     public function show($slug)
     {
-        $post = Post::with(['comments', 'tags'])->whereStatus('publish')->wherePublishStatus('published')->where('slug', $slug)->first();
+        $post = Post::with(['comments', 'postTags'])->whereStatus('publish')->wherePublishStatus('published')->where('slug', $slug)->first();
         return response()->json([
             'status' => 'success',
             'data' => new PostResource($post)
