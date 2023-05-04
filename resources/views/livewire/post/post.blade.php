@@ -57,8 +57,8 @@
                         <textarea wire:model="content" id="content" class="form-control"></textarea>
                         @error('content')
                         <small class="text-danger">{{ $message }}</small>
-                        <small>Untuk Menambahkan Iklan Di Post tambahkan kunci "[ads]" tanpa tanda petik di tengah paragraft </small>
                         @enderror
+                        <small>Untuk Menambahkan Iklan Di Post tambahkan kunci "[ads]" tanpa tanda petik di tengah paragraft </small>
                     </div>
                     {{-- <x-select name="publish_status" label="Publish Status">
                         <option value="">Select Status</option>
