@@ -37,7 +37,7 @@ class PostResource extends JsonResource
             'author_image' => $this->author_image,
             'author_name' => $this->author_name,
             'category_name' => $this->category_name,
-            'post_tags' => $this->post_tags,
+            'post_tags' => $this->postTags,
             'tags' => $this->tags,
             'tag_lists' => $this->tag_lists,
             'time_ago' => $this->time_ago,
