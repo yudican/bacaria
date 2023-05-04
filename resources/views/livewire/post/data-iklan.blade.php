@@ -26,19 +26,35 @@
             <div class="card">
                 <div class="card-body">
                     <x-select name="jenis_iklan_id" label="Jenis Iklan">
-                        <option value="">Select Jenis Iklan</option>
+                        <option value="">Pilih Jenis Iklan</option>
                         @foreach ($jenis_iklan as $item)
                         <option value="{{$item->id}}">{{$item->nama_jenis_iklan}}</option>
                         @endforeach
                     </x-select>
                     <x-text-field type="text" name="nama_iklan" label="Nama Iklan" />
+
+                    @if ($kode_jenis_iklan == 'ads-feed')
+                    <x-select name="category_id" label="Kategori">
+                        <option value="">Pilih Kategori</option>
+                        @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+
+                    </x-select>
+
+                    @endif
+
+                    @if (!in_array($kode_jenis_iklan, ['ads-feed', 'ads-popup','ads-content']))
                     <x-select name="kode_iklan" label="Kode Iklan">
-                        <option value="">Select Kode Iklan</option>
+                        <option value="">Pilih Kode Iklan</option>
                         <option value="SIDPOST">Sidebar Post</option>
                         <option value="SIDRIGHT">Sidebar Right </option>
                         <option value="SIDLEFT">Sidebar Left</option>
                         <option value="BANNER">Iklan Banner</option>
+                        <option value="POPUP">Iklan Pop Up</option>
                     </x-select>
+                    @endif
+
                     @if ($kode_jenis_iklan == 'google-ads')
                     <div>
                         <x-text-field type="text" name="ads_slot_id" label="Ads Slot Id" />

@@ -73,7 +73,6 @@ class PostController extends Controller
             ];
         }
 
-
         return response()->json($new_posts);
     }
 

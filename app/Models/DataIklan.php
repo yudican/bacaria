@@ -13,7 +13,7 @@ class DataIklan extends Model
 
     //public $incrementing = false;
 
-    protected $fillable = ['jenis_iklan_id', 'nama_iklan', 'kode_iklan', 'image', 'link', 'ads_slot_id', 'ads_client_id'];
+    protected $fillable = ['jenis_iklan_id', 'nama_iklan', 'kode_iklan', 'image', 'link', 'ads_slot_id', 'ads_client_id', 'category_id'];
 
     protected $dates = [];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Post;
 
+use App\Models\Category;
 use App\Models\DataIklan;
 use App\Models\JenisIklan;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +22,7 @@ class DataIklanController extends Component
     public $kode_jenis_iklan;
     public $ads_slot_id;
     public $ads_client_id;
+    public $category_id;
 
 
     public $route_name = null;
@@ -43,7 +45,8 @@ class DataIklanController extends Component
         $this->kode_jenis_iklan = $jenis_iklan ? $jenis_iklan->kode_jenis_iklan : null;
 
         return view('livewire.post.data-iklan', [
-            'jenis_iklan' => JenisIklan::all()
+            'jenis_iklan' => JenisIklan::all(),
+            'categories' => Category::all(),
         ])->layout(config('crud-generator.layout'));
     }
 
@@ -58,6 +61,7 @@ class DataIklanController extends Component
             'link'  => $this->link,
             'ads_slot_id'  => $this->ads_slot_id,
             'ads_client_id'  => $this->ads_client_id,
+            'category_id'  => $this->category_id,
         ];
 
         if ($this->image_path) {
@@ -82,6 +86,7 @@ class DataIklanController extends Component
             'link'  => $this->link,
             'ads_slot_id'  => $this->ads_slot_id,
             'ads_client_id'  => $this->ads_client_id,
+            'category_id'  => $this->category_id,
         ];
         $row = DataIklan::find($this->data_iklan_id);
 
@@ -113,8 +118,14 @@ class DataIklanController extends Component
         $rule = [
             'jenis_iklan_id'  => 'required',
             'nama_iklan'  => 'required',
-            'kode_iklan'  => 'required',
         ];
+        if ($this->kode_jenis_iklan == 'ads-feed') {
+            $rule['category_id'] = 'required';
+        }
+
+        if (!in_array($this->kode_jenis_iklan, ['ads-feed', 'ads-popup', 'ads-content'])) {
+            $rule['kode_iklan'] = 'required';
+        }
 
         if ($this->kode_jenis_iklan == 'google-ads') {
             $rule['ads_slot_id'] = 'required';
@@ -135,6 +146,8 @@ class DataIklanController extends Component
     {
         $this->_reset();
         $row = DataIklan::find($data_iklan_id);
+        $jenis_iklan = JenisIklan::find($row->jenis_iklan_id);
+        $this->kode_jenis_iklan = $jenis_iklan ? $jenis_iklan->kode_jenis_iklan : null;
         $this->data_iklan_id = $row->id;
         $this->jenis_iklan_id = $row->jenis_iklan_id;
         $this->nama_iklan = $row->nama_iklan;
@@ -143,6 +156,7 @@ class DataIklanController extends Component
         $this->link = $row->link;
         $this->ads_slot_id = $row->ads_slot_id;
         $this->ads_client_id = $row->ads_client_id;
+        $this->category_id = $row->category_id;
         if ($this->form) {
             $this->form_active = true;
             $this->emit('loadForm');
@@ -184,6 +198,7 @@ class DataIklanController extends Component
         $this->image_path = null;
         $this->ads_slot_id = null;
         $this->ads_client_id = null;
+        $this->category_id = null;
         $this->link = null;
         $this->form = true;
         $this->form_active = false;

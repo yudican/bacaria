@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\DataIklan;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostListResource extends JsonResource
@@ -14,6 +15,7 @@ class PostListResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'uid_post' => $this->uid_post,
@@ -24,7 +26,7 @@ class PostListResource extends JsonResource
             'comments_count' => $this->comments_count,
             'image_path' => $this->image_path,
             'time_ago' => $this->time_ago,
-            'category_name' => $this->time_ago,
+            'category_name' => $this->category_name,
             'author' => [
                 'id' => $this->author_id,
                 'name' => $this->author_name,
