@@ -15,8 +15,8 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        $ads = DataIklan::where('category_id', $this->category_id)->whereHas('jenisIklan', function ($query) {
-            return $query->where('kode_jenis_iklan', 'ads-feed');
+        $ads = DataIklan::whereHas('jenisIklan', function ($query) {
+            return $query->where('kode_jenis_iklan', 'ads-content');
         })->inRandomOrder()->first();
         return [
             'id' => $this->id,

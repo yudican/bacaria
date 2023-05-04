@@ -15,7 +15,6 @@ class PostListResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'id' => $this->id,
             'uid_post' => $this->uid_post,
