@@ -45,7 +45,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tags()
+    public function postTags()
     {
         return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
     }
@@ -147,14 +147,14 @@ class Post extends Model
 
     public function getTagListsAttribute()
     {
-        $tags = $this->tags()->get()->pluck('name');
+        $tags = $this->postTags()->get()->pluck('name');
         return $tags;
     }
 
 
     public function getTagsAttribute()
     {
-        $tags = $this->tags()->get()->implode('name', ', ');
+        $tags = $this->postTags()->get()->implode('name', ', ');
         return $tags;
     }
 

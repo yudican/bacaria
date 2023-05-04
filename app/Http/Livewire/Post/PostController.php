@@ -214,7 +214,7 @@ class PostController extends Component
         $this->reject_reason = $row->reject_reason;
         $this->title = $row->title;
         $this->type = $row->type;
-        $this->tags = $row->postTags()->implode('name', ',');
+        $this->tags = $row->tags;
         $this->uid_post = $row->uid_post;
         if ($this->form) {
             $this->form_active = true;
